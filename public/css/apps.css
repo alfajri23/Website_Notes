@@ -1,0 +1,27 @@
+main{
+	display: flex;
+	flex-direction: row;
+}
+
+#hamburger{
+	cursor: pointer;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+#menu-bar{
+	width: 350px;
+	height: 100%;
+	position: absolute;
+	z-index: 1;
+	box-sizing: border-box;
+	transform: translate(-100%, 0);
+  	transition: transform 0.3s ease-in-out;
+}
+	#menu-bar.open{
+		position: relative;
+		width: 400px;
+		height: 100%;
+		transform: translate(0,0);
+    	transition: transform 0.3s ease-in-out;
+	}

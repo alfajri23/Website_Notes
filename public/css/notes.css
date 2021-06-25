@@ -1,0 +1,95 @@
+/*#content-page{
+    width: 75%;  
+}*/
+#content-page{
+    width: 100%;
+}
+
+.konten{
+    width: 16rem;
+}
+
+
+#add-notes-logo{
+    cursor: pointer;
+    background-color: lightblue;
+    width: 50px;
+    height: 50px;
+    box-sizing: border-box;
+    border-radius: 30px;
+}
+    .plus-logo{
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+    }
+
+#add-notes{
+    display: none;
+    width: 30%;    
+    padding: 0 30px;
+}
+    #add-notes.open{
+        display: block;
+        transition: transform 0.3s ease-in-out;
+    }
+
+@media only screen and (max-width: 924px) {
+    .konten{
+        width: 16rem;
+    }
+    #add-notes{
+        width: 25%;       
+        padding: 0 20px;
+    }
+}
+
+@media only screen and (max-width: 837px) {
+    .konten{
+        width: 16rem;
+    }
+    #add-notes{
+        width: 25%;
+        padding: 0 20px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    #main-page{
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    #card{
+        display: flex;
+        justify-content: center;
+    }
+    .konten{
+    width: 19rem;
+    }
+
+    #add-notes{
+        width: 60%;
+        margin-bottom: 20px;
+    }
+
+    #content-page{
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 651px) {
+    .konten{
+    width: 23rem;
+    }
+    #add-notes{
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 587px) {
+    #card-body{
+        width:80%;
+    }
+}
