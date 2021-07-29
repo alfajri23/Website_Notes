@@ -13,9 +13,7 @@ class ModifyStatusNotesTable extends Migration
      */
     public function up()
     {
-        Schema::table('notes', function (Blueprint $table) {
-            $table->enum('status')->nullable();
-        });
+        
     }
 
     /**

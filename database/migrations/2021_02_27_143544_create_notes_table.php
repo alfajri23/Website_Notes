@@ -19,7 +19,7 @@ class CreateNotesTable extends Migration
             $table->string('judul');
             $table->string('desc')->nullable();
             $table->date('deadline')->nullable();
-            $table->enum('status', ['done','pending','passed']);
+            $table->enum('status', ['done','pending','passed'])->nullable();
             $table->timestamps();
         });
     }
