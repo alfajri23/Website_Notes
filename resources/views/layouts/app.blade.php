@@ -83,7 +83,7 @@
         </nav>
 
 
-        <main class="">
+        <main class="app">
             
             @yield('content')
             {{isset($slot) ? $slot : null}}

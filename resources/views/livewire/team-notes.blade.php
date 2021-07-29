@@ -22,9 +22,9 @@
 
     <div id="content-page" class="">
     <!-- Header card  -->
-        <div class="row my-3d-flex justify-content-between">
-            <h3 class="ml-5">Produk</h3>
-            <div class="row mr-5">
+        <div class="row my-3 d-flex justify-content-between align-items-center px-5 header">
+           <h3 class="my-3">Your Notes</h3>
+            <div class="row my-3 header-search">
                 <!-- search -->
                 <div class="col-8 ">
                     <input type="text" class="form-control" placeholder="search" wire:model="search"> 
@@ -52,16 +52,16 @@
 
     <!-- Menu card -->
         <div class="row mt-4 d-flex justify-content-center">     
-                <span>
-                    <button wire:click.prevent="show_all()" class="btn badge badge-info text-white badge-pill mx-1 px-3 pt-2"><h6>Semua</h6></button>
+                <span class="d-flex justify-content-center align-items-center flex-wrap filter">
+                    <button wire:click.prevent="show_all()" class="btn badge badge-info text-white badge-pill m-1 px-3 pt-2"><h6>Semua</h6></button>
 
-                    <button wire:click.prevent="filter_now_date()" class="btn badge badge-secondary text-white badge-pill mx-1 px-3 pt-2"><h6>Hari ini</h6></button>
+                    <button wire:click.prevent="filter_now_date()" class="btn badge badge-secondary text-white badge-pill m-1 px-3 pt-2"><h6>Hari ini</h6></button>
 
-                    <button wire:click.prevent="filter_pending()" class="btn badge badge-primary text-white badge-pill mx-1 px-3 pt-2"><h6>Pending</h6></button>
+                    <button wire:click.prevent="filter_pending()" class="btn badge badge-primary text-white badge-pill m-1 px-3 pt-2"><h6>Pending</h6></button>
 
-                    <button wire:click.prevent="filter_done()" class="btn badge badge-success text-white badge-pill mx-1 px-3 pt-2"><h6>Selesai</h6></button>
+                    <button wire:click.prevent="filter_done()" class="btn badge badge-success text-white badge-pill m-1 px-3 pt-2"><h6>Selesai</h6></button>
 
-                    <button wire:click.prevent="filter_passed()" class="btn badge badge-danger text-white badge-pill mx-1 px-3 pt-2"><h6>Terlewat</h6></button>
+                    <button wire:click.prevent="filter_passed()" class="btn badge badge-danger text-white badge-pill m-1 px-3 pt-2"><h6>Terlewat</h6></button>
                     
                 </span>
         </div>
@@ -69,7 +69,7 @@
 
     <!-- Card -->
         <div id="card" class="container-fluid d-flex ">
-            <div class="d-flex flex-row flex-wrap p-4 ">
+            <div class="d-sm-inline-flex flex-row flex-wrap p-4 ">
             @foreach ($note as $data)
                     <div class="card m-1 konten" >
                     <div class="card-body">
@@ -164,7 +164,7 @@
     </div>
 
     <span>
-    <span id="add-notes-logo" class="d-flex justify-content-center align-items-center rounded-circle">
+    <span id="add-notes-logo" class="d-none justify-content-center align-items-center rounded-circle">
         <span class="plus-logo">+</span>
     </span>
     </span>

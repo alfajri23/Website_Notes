@@ -10,6 +10,7 @@
     transition: transform 0.3s ease-in-out;
 }
 
+
 #content-page{
     width: 100%;
 }
@@ -55,7 +56,7 @@
 
 @media only screen and (max-width: 837px) {
     .konten{
-        width: 16rem;
+        width: 48%;
     }
     #add-notes{
         width: 25%;
@@ -75,12 +76,12 @@
         justify-content: center;
     }
     .konten{
-    width: 19rem;
+    width: 48%;
     }
 
     #add-notes{
-        width: 60%;
-        margin-bottom: 20px;
+        width: 80%;
+        margin-bottom: 50px;
     }
 
     #content-page{
@@ -89,16 +90,30 @@
 }
 
 @media only screen and (max-width: 651px) {
+    .header{
+        flex-direction: column;
+    }
     .konten{
-    width: 23rem;
+    width: 90%;
     }
     #add-notes{
-        width: 70%;
+        width: 80%;
     }
 }
 
-@media only screen and (max-width: 587px) {
+/*@media only screen and (max-width: 587px) {
     #card-body{
         width:80%;
     }
 }
+
+@media only screen and (max-width: 420px) {
+    .konten{
+    width: 18rem;
+    background-color: lightblue;
+    }
+    #card-body{
+        width:80%;
+        background-color: lightblue;
+    }
+}*/

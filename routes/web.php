@@ -13,9 +13,9 @@ use App\Http\Livewire;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/',function(){
-    return view ('welcome');
-});
+// Route::get('/',function(){
+//     return view ('welcome');
+// });
 
 Route::get('/cek', function () {
     auth()->user()->assignRole('user');
@@ -27,9 +27,9 @@ Route::get('/cek', function () {
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function(){
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::get('/dasboard',livewire\Notes::class);
+    //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/',livewire\Notes::class);
     Route::get('/team/{id}',livewire\TeamNotes::class);
 });
 
-Route::get('/kirim_email', [App\Http\Controllers\SendNotify::class, 'kirim']);
+//Route::get('/kirim_email', [App\Http\Controllers\SendNotify::class, 'kirim']);
