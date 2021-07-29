@@ -36,6 +36,7 @@ class Template extends Component
         Note::updateOrCreate(['id' => $this->id_note],[
             //menambahkan unik id karena heroku tdk bisa increment id
             'id' => rand(),
+            'status' => 'pending',
             'judul' => $this->judul,
             'desc' => $this->desc,
             'deadline' => $this->deadline,
