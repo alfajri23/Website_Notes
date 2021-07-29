@@ -23,7 +23,7 @@
     <div id="content-page" class="">
     <!-- Header card  -->
         <div class="row my-3 d-flex justify-content-between align-items-center px-5 header">
-           <h3 class="my-3">Your Notes</h3>
+           <h2 class="my-3 font-weight-bold">Your Notes</h2>
             <div class="row my-3 header-search">
                 <!-- search -->
                 <div class="col-8 ">
@@ -88,11 +88,11 @@
                         
                         <h6 class="card-subtitle mb-2 mt-1 text-muted">{{ $data->deadline }}</h6>
                         <p class="card-text">{{$data->desc}}</p>
-                        @if($data->status!='done')
-                        <button type="button" wire:click.prevent="update_status({{ $data->id }},'done')" class="btn btn-primary">Selesai</button>
-                        <button type="button" wire:click="edit({{ $data->id }})" class="btn btn-success">Edit</button>
+                        @if($data->status!="done")
+                            <button type="button" wire:click.prevent="update_status({{ $data->id }},'done')" class="btn btn-outline-primary btn-sm">Selesai</button>
+                            <button type="button" wire:click="edit({{ $data->id }})" class="btn btn-outline-success btn-sm edit">Edit</button>
                         @endif
-                        <button type="button" wire:click="delete({{ $data->id }})" class="btn btn-danger">Hapus</button>   
+                        <button type="button" wire:click="delete({{ $data->id }})" class="btn btn-outline-danger btn-sm">Hapus</button>    
                     </div>
                 </div>
             @endforeach
