@@ -14,7 +14,9 @@ class AddFkNotes extends Migration
     public function up()
     {
        Schema::table('notes', function (Blueprint $table) {
-            $table->dropColumn('team_id');
+            // saya matikan dibawah karena error dipostgres
+            //bisa dihidupkan lagi jika gagal
+            //$table->dropColumn('team_id');
 
         });
     }
