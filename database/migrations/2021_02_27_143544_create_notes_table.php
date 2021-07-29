@@ -18,7 +18,7 @@ class CreateNotesTable extends Migration
             $table->foreignId('user_id');
             $table->string('judul');
             $table->string('desc')->nullable();
-            $table->date('deadline');
+            $table->date('deadline')->nullable();
             $table->enum('status', ['done','pending','passed']);
             $table->timestamps();
         });
