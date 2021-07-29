@@ -8,24 +8,54 @@ use App\Models\Team;
 use App\Models\TeamUser;
 use App\Models\Auth;
 use Livewire\WithPagination; 
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RemainNotify;
 
-class Notes extends Component
+class Notes extends Template
 {
-    use WithPagination;
-    protected $paginationTheme = 'bootstrap';
-    public $judul,$desc,$deadline;
-    public $id_note;
-    public $paginate = 10;
-    public $search;
-    public $filter;
-    public $edit = false;
-    public $show;
+
+    public function mount(){
+        $now = Carbon::today();
+        $note = Note::where('user_id', auth()->user()->id)->orderBy('deadline','asc')->get();
+        foreach ($note as $notes) {
+            $Date = date('Y-m-d');
+            //$notes->deadline = $notes->deadline - $Date;
+            if($notes->status=='done'){   
+            }
+            else{
+                if($notes->deadline>$Date){
+                    $this->update_status($notes->id,"pending");
+                    // $day =  $notes->deadline;
+
+                    // $newDate = Carbon::parse($day)->format('Y-m-d'); 
+                    // $newdate = Carbon::createFromFormat('Y-m-d', $day)->format('Y-m-d');
+
+                    // var_dump($newDate);
+                    // $length = $newdate->diffInDays($now);                  
+                    // $this->update_countdown($notes->id,$length);
+                }
+                else if($notes->deadline<$Date){
+                    $this->update_status($notes->id,"passed");  
+                }
+                else if($notes->deadline == $Date){
+                    // $data = [
+                    //     'nama' => auth()->user()->name,
+                    //     'judul' => $notes->judul,
+                    //     'desc' => $notes->desc,
+                    //     'deadline' => $notes->deadline,
+                    //     'link' => 'http://127.0.0.1:8000/dasboard'
+                    // ];
+
+                    // Mail::to(auth()->user()->email)->send(new RemainNotify($data));
+                }
+            }                        
+        }
+    }
 
     public function render(){  
-
+        
         $note=null;
-        $nama="feri";
-
         
         $date = date('Y-m-d');
         //jika tidak ada search
@@ -45,13 +75,21 @@ class Notes extends Component
             else{                                   //tampil semua
                 $note = Note::where('user_id', auth()->user()->id)->orderBy('deadline','asc')->paginate($this->paginate);
             } 
+
         //jika ada keyword search
         }else{
             $note = Note::where('user_id', auth()->user()->id)
                     ->where('judul','like','%'. $this->search.'%')->paginate($this->paginate);
+            
         }
 
+        //get list team
         $team = Team::whereIn('id',TeamUser::select('team_id')->where('user_id', auth()->user()->id )->get())->get();
+
+        //date left
+        $now = Carbon::tomorrow();
+        $length = $now -> diffInDays($date);
+        //dd($note);
 
         return view('livewire.notes',[
             'note'=>$note,
@@ -60,103 +98,7 @@ class Notes extends Component
         ]);
 
         $this->filter = null;
-    }
-
-    public function store(){
-        // $this->validate([
-        //     'judul' => 'required|string',
-        //     'deadline' => 'require',
-        //     'user_id' => 'require',
-        // ]);
-
-        Note::updateOrCreate(['id' => $this->id_note],[
-            'judul' => $this->judul,
-            'desc' => $this->desc,
-            'deadline' => $this->deadline,
-            'user_id' => auth()->user()->id,
-        ]);
-
-        $this->judul='';
-        $this->desc='';
-        $this->deadline='';
-        $this->id_note=null;
-    }
-
-    public function update_status($id,$value){
-        $note = Note::find($id);
-        $note->status= $value;
-        $note->save();
-    }
-
-    public function edit($id){
-        $this->edit=true;
-        $note= Note::find($id);
-        $this->judul = $note->judul;
-        $this->desc = $note->desc;
-        $this->deadline = $note->deadline;
-        $this->id_note = $note->id;
-    }
-
-    public function cancel_edit(){
-        $this->judul='';
-        $this->desc='';
-        $this->deadline='';
-        $this->id_note=null;
-        $this->edit=false;
-    }
-
-    public function delete($id){
-        $note = Note::find($id); 
-        $note->delete(); 
-        session()->flash('message', $note->name . ' Dihapus'); 
-    }
-
-    //filter status
-    public function mount(){
-        $note = Note::where('user_id', auth()->user()->id)->paginate($this->paginate);
-        foreach ($note as $notes) {
-            $Date = date('Y-m-d');
-            //$notes->deadline = $notes->deadline - $Date;
-           
-            if($notes->status=='done'){   
-            }
-            else{
-                if($notes->deadline>$Date){
-                    $this->update_status($notes->id,"pending"); 
-                }
-                else if($notes->deadline<$Date){
-                    $this->update_status($notes->id,"passed");  
-                }
-            }                        
-        }
-    }
-
-    public function show_all(){
-        $this->filter=null;
-    }
-
-    public function filter_now_date(){
-        $this->filter='date_now';
-    }
-
-    public function filter_pending(){
-        $this->filter='pending';
-    }
-
-    public function filter_done(){
-        $this->filter='done';
-    }
-
-    public function filter_passed(){
-        $this->filter='passed';
-    }
-
-    public function add_role(){
-        auth()->user()->assignRole('user');
-    }
-
-    public function del_role(){
-        auth()->user()->removeRole('user');
+        $this->search = null;
     }
 
 }
