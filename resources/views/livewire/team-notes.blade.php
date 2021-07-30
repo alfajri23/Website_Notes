@@ -69,7 +69,7 @@
 
     <!-- Card -->
         <div id="card" class="container-fluid d-flex ">
-            <div class="d-sm-inline-flex flex-row flex-wrap p-4 ">
+            <div class="container d-flex flex-row flex-wrap p-4 ">
             @foreach ($note as $data)
                     <div class="card m-1 konten" >
                     <div class="card-body">
