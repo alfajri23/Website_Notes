@@ -39,15 +39,15 @@ class Notes extends Template
                     $this->update_status($notes->id,"passed");  
                 }
                 else if($notes->deadline == $Date){
-                    $data = [
-                        'nama' => auth()->user()->name,
-                        'judul' => $notes->judul,
-                        'desc' => $notes->desc,
-                        'deadline' => $notes->deadline,
-                        'link' => 'http://noteside.herokuapp.com'
-                    ];
+                    // $data = [
+                    //     'nama' => auth()->user()->name,
+                    //     'judul' => $notes->judul,
+                    //     'desc' => $notes->desc,
+                    //     'deadline' => $notes->deadline,
+                    //     'link' => 'http://noteside.herokuapp.com'
+                    // ];
 
-                    Mail::to(auth()->user()->email)->send(new RemainNotify($data));
+                    // Mail::to(auth()->user()->email)->send(new RemainNotify($data));
                 }
             }                        
         }
