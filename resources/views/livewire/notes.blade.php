@@ -1,25 +1,7 @@
 <div id="main" class="">
 
 
-<aside id="menu-bar" class="bg-secondary text-white">
-            
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item bg-secondary "><a class="text-decoration-none font-weight-bold text-white" href="{{ url('/dasboard') }}">Dasboard</a></li>
-                <li class="list-group-item bg-secondary text-white">
-                    <p class="dropdown-toggle collapsed font-weight-bold" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                        Team
-                    </p>
-                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#menu-bar">
-                        <a class="dropdown-item text-white" href="#">Buat Team +</a>
-                        @foreach ($team as $tim)
-                        <a class="dropdown-item text-white" wire:key="{{ $loop->index }}" href="{{ url('/team/'.$tim->id) }}">{{$tim->name}}</></a>
-                        @endforeach
-                    </div>
-                <li>
-            </ul>
-            
-</aside>
-
+@include('layouts.sidebar')
 
 <div id="main-page" class="container-fluid d-flex p-3">
     <!-- content-page -->
@@ -40,12 +22,12 @@
                     Filter
                 </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <!-- <button class="dropdown-item" wire:click="filter_judul()">Judul</button>
+                        <button class="dropdown-item" wire:click="filter_judul()">Judul</button>
                         <button class="dropdown-item" wire:click="filter_date()">Waktu</button>
                         <button class="dropdown-item" wire:click="filter_now_date()">Hari ini</button>
                         <div class="dropdown-divider"></div>
                         <button class="dropdown-item" wire:click="add_role()">Akses user</button>
-                        <button class="dropdown-item" wire:click="del_role()">Hapus akses</button> -->
+                        <button class="dropdown-item" wire:click="del_role()">Hapus akses</button>
                     </div>
                 </div>
                 <!--end dropdown -->
@@ -93,9 +75,15 @@
                         <p class="card-text">{{$data->desc}}</p>
                         @if($data->status!="done")
                             <button type="button" wire:click.prevent="update_status({{ $data->id }},'done')" class="btn btn-outline-primary btn-sm">Selesai</button>
-                            <button type="button" wire:click="edit({{ $data->id }})" class="btn btn-outline-success btn-sm edit">Edit</button>
+                            <button type="button" wire:click="edit({{ $data->id }})" class="btn btn-outline-success btn-sm edit" wire:loading.class="bg-gray">Edit</button>
+                            <div wire:loading wire:target="edit({{ $data->id }})">
+                                Loading...
+                            </div>
                         @endif
                         <button type="button" wire:click="delete({{ $data->id }})" class="btn btn-outline-danger btn-sm">Hapus</button>   
+                        <div wire:loading wire:target="delete({{ $data->id }})">
+                            Menghapus...
+                        </div>
                     </div>
                 </div>
             @endforeach

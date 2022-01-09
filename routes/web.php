@@ -32,4 +32,4 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/team/{id}',livewire\TeamNotes::class);
 });
 
-//Route::get('/kirim_email', [App\Http\Controllers\SendNotify::class, 'kirim']);
+Route::get('/kirim_email', [App\Http\Controllers\SendNotify::class, 'kirim']);

@@ -32,6 +32,7 @@ class Template extends Component
         //     'deadline' => 'require',
         //     'user_id' => 'require',
         // ]);
+        //dd("hallo");
 
         Note::updateOrCreate(['id' => $this->id_note],[
             //menambahkan unik id karena heroku tdk bisa increment id

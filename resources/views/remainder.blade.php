@@ -1,19 +1,19 @@
 @component('mail::message')
-# Hallo {{$data['nama']}}
+# Hallo {{$user["name"]}}
     Kami ingin menginfokan, 
-    Deadline untuk Notes :
+    Deadline untuk Task Anda :
 
-@component('mail::panel')
-    <b> {{$data['judul']}} </b>
-    {{$data['desc']}}
+@component('mail::table')
+|Task|Deskripsi|
+|-------|:--------|
+	@foreach($data as $reminder)
+|{{$reminder['judul']}}|{{$reminder['desc']}}
+	@endforeach
 @endcomponent
 
-    Tinggal hari ini {{$data['deadline']}}
-    Segera selesaikan ya 
+Tinggal hari ini
+Segera selesaikan ya
 
-@component('mail::button', ['url' => $data['link']])
-Lihat Task
-@endcomponent
 
 Thanks,<br>
 {{ config('app.name') }}
